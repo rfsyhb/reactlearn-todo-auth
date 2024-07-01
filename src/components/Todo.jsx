@@ -11,7 +11,7 @@ export default function Todo() {
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.todos.todos);
   const status = useSelector((state) => state.todos.status);
-  const error = useSelector((state) => state.todo.error);
+  const error = useSelector((state) => state.todos.error);
   const [newTodo, setNewTodo] = useState('');
 
   useEffect(() => {
