@@ -10,7 +10,7 @@ export const registerUser = createAsyncThunk(
   'users/register',
   async (userData) => {
     const response = await apiRequest('post', '/users/register', userData);
-    return response.data.data.newUser;
+    return response.data.newUser;
   }
 );
 
@@ -18,6 +18,7 @@ export const loginUser = createAsyncThunk(
   'users/login',
   async (credentials) => {
     const response = await apiRequest('post', '/users/login', credentials);
+    localStorage.setItem('token', response.data.token);
     return response.data.token;
   }
 );
