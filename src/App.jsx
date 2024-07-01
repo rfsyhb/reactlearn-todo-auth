@@ -2,9 +2,12 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { logout } from './slices/userSlice';
+import Login from './components/Login';
+import Register from './components/Register';
+import Todo from './components/Todo';
 
 function App() {
-  const token = useSelector((state) => state.users.toke);
+  const token = useSelector((state) => state.users.token);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -23,15 +26,15 @@ function App() {
       <Routes>
         <Route
           path="/login"
-          element={token ? <Navigate to="/todos" /> : 'display_login_page'}
+          element={token ? <Navigate to="/todos" /> : <Login />}
         />
         <Route
           path="/register"
-          element={token ? <Navigate to="/todos" /> : 'display_register_page'}
+          element={token ? <Navigate to="/todos" /> : <Register />}
         />
         <Route
           path="/todos"
-          element={token ? 'display_todo_page' : <Navigate to="/login" />}
+          element={token ? <Todo /> : <Navigate to="/login" />}
         />
         <Route
           path="/"
