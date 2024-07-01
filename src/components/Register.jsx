@@ -50,6 +50,9 @@ export default function Register() {
         />
         <button type="submit">Register</button>
       </form>
+      <button type="button" onClick={() => navigate('/login')}>
+        back to login?
+      </button>
     </div>
   );
 }
