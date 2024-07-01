@@ -6,13 +6,13 @@ import apiRequest from '../service/api';
  * 01 - Thunk
  * fetchTodos, createTodo, updateTodo, deleteTodo
  */
-export const fetchTodos = createAsyncThunk('todo/fetchTodos', async () => {
+export const fetchTodos = createAsyncThunk('todos/fetchTodos', async () => {
   const response = await apiRequest('get', '/todos');
   return response.data.userTodos;
 });
 
 export const createTodo = createAsyncThunk(
-  'todo/createTodo',
+  'todos/createTodo',
   async (newTodoData, { dispatch }) => {
     const response = await apiRequest('post', '/todos', newTodoData);
     dispatch(fetchTodos());
@@ -21,7 +21,7 @@ export const createTodo = createAsyncThunk(
 );
 
 export const updateTodo = createAsyncThunk(
-  'todo/updateTodo',
+  'todos/updateTodo',
   async ({ id, updateData }, { dispatch }) => {
     const response = await apiRequest('put', `/todos/${id}`, updateData);
     dispatch(fetchTodos());
@@ -30,7 +30,7 @@ export const updateTodo = createAsyncThunk(
 );
 
 export const deleteTodo = createAsyncThunk(
-  'todo/deleteTodo',
+  'todos/deleteTodo',
   async (id, { dispatch }) => {
     await apiRequest('delete', `/todos/${id}`);
     dispatch(fetchTodos());
@@ -51,7 +51,7 @@ const initialState = {
  * 03 - createSlice
  */
 const todoSlice = createSlice({
-  name: 'todo',
+  name: 'todos',
   initialState,
   reducers: {},
   extraReducers: (builder) => {

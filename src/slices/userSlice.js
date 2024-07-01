@@ -7,19 +7,22 @@ import apiRequest from '../service/api';
  * registerUser(userData), loginUser(credentials), fetchUsers()
  */
 export const registerUser = createAsyncThunk(
-  'user/register',
+  'users/register',
   async (userData) => {
     const response = await apiRequest('post', '/users/register', userData);
     return response.data.data.newUser;
   }
 );
 
-export const loginUser = createAsyncThunk('user/login', async (credentials) => {
-  const response = await apiRequest('post', '/users/login', credentials);
-  return response.data.token;
-});
+export const loginUser = createAsyncThunk(
+  'users/login',
+  async (credentials) => {
+    const response = await apiRequest('post', '/users/login', credentials);
+    return response.data.token;
+  }
+);
 
-export const fetchUsers = createAsyncThunk('user/fetchUsers', async () => {
+export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
   const response = await apiRequest('get', '/users');
   return response.data.data.users;
 });
@@ -39,7 +42,7 @@ const initialState = {
  * 03 - slice
  */
 const userSlice = createSlice({
-  name: 'user',
+  name: 'users',
   initialState,
   reducers: {
     // logout -> hapus data authed User
